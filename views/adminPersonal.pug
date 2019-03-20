@@ -1,0 +1,50 @@
+extends layout
+
+block content
+    .body
+        
+        .container
+            nav.navbar
+                a.link(href='/manejoPersonal')
+                    button.button Registrar Tripulación
+                a.link(href='/adminPersonal')
+                    button.button Administrar Tripulación
+                a.link(href='/mantenimiento')
+                    button.button Aviones Mantenimiento                 
+                a.link(href='/tiposMantenimiento')
+                    button.button Tipos Mantenimiento
+                a.link(href='/verMantenimientos')
+                    button.button Administrar Aviones Mantenimiento
+                a.link(href='/')
+                    button.button1 Home
+
+            hr
+            table.table.bg-white
+                thead
+                    tr 
+                        th(scope='col') Cédula
+                        th(scope='col') Nombre
+                        th(scope='col') Apellido
+                        th(scope='col') Cargo
+                        th(scope='col') Teléfono
+                        th(scope='col') Correo
+                         th.inv
+                        th.mod(scope='col') Asignar Vuelo
+                        th.mod(scope='col') Eliminar
+                        
+                tbody
+                - for (var i = 0; i < tripulacion.length; i++)
+                    tr
+                        td #{tripulacion[i].Cedula}
+                        td #{tripulacion[i].Nombre}
+                        td #{tripulacion[i].Apellido}
+                        td #{tripulacion[i].Cargo}
+                        td #{tripulacion[i].Telefono}
+                        td #{tripulacion[i].Correo}
+
+                        td.inv
+                        td
+
+                        td
+                            form(action=`adminPersonal/${tripulacion[i].Cedula}`,method="POST")
+                                button.btn.btn-outline-danger(type='submit') Eliminar

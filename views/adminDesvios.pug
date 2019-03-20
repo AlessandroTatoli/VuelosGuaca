@@ -1,0 +1,55 @@
+extends layout
+
+block content
+
+    .body
+        .container
+            nav.navbar
+                a.link(href='/planificacionVuelos')
+                    button.button Registrar Ruta
+                a.link(href='/adminRutas')
+                    button.button Administrar Rutas 
+                a.link(href='/verVuelos')
+                    button.button Administrar Vuelos
+                a.link(href='/adminServiciosVuelos')
+                    button.button Servicios Vuelos
+                a.link(href='/adminVuelosCancelados')
+                    button.button Vuelos Cancelados
+                a.link(href='/adminDesvios')
+                    button.button Administrar Desvíos                    
+                a.link(href='/')
+                    button.button1 Home
+            hr
+            table.table.bg-white
+                thead
+                    tr 
+                        th(scope='col') Número de Vuelo
+                        th(scope='col') Avión Asignado
+                        th(scope='col') Origen
+                        th(scope='col') Destino
+                        th.mod(scope='col') Desvío
+
+                tbody
+                - for (var i = 0; i < vuelos.length; i++)
+                    tr
+                        
+                            td #{vuelos[i].N_Vuelo}
+                            td #{vuelos[i].N_Serial}
+                            td #{vuelos[i].Origen}
+                            td #{vuelos[i].Destino}
+                            td  
+                                form(action=`desviarVuelo/${vuelos[i].N_Vuelo}/${vuelos[i].N_Serial}/${vuelos[i].Origen}`, method="POST")
+                                
+                                    label(for='destino')
+                                    select(name="Destino")
+                                        option(value="" disabled selected) Selecciona un Destino
+                                        option(value="Caracas") Caracas
+                                        option(value="Atlanta") Atlanta
+                                        option(value="Dubai") Dubai 
+                                        option(value="Miami") Miami
+                                        option(value="Nueva York") Nueva York
+                                        option(value="Paris") París 
+                                    br
+                                    br
+                                
+                                    button.btn.btn-outline-create(type='submit') Actualizar Destino

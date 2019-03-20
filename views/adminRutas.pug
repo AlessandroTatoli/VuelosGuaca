@@ -1,0 +1,50 @@
+extends layout
+
+block content
+
+    .body
+        .container
+            nav.navbar
+                a.link(href='/planificacionVuelos')
+                    button.button Registrar Ruta
+                a.link(href='/adminRutas')
+                    button.button Administrar Rutas 
+                a.link(href='/verVuelos')
+                    button.button Administrar Vuelos
+                a.link(href='/adminServiciosVuelos')
+                    button.button Servicios Vuelos
+                a.link(href='/adminVuelosCancelados')
+                    button.button Vuelos Cancelados
+                a.link(href='/adminDesvios')
+                    button.button Administrar Desvíos                    
+                a.link(href='/')
+                    button.button1 Home
+
+            table.table.bg-white
+                thead
+                    tr
+                        th(scope='col') Número Serial
+                        th(scope='col') Ida
+                        th(scope='col') Vuelta
+                        th.inv
+                        th.mod Numero de Vuelo
+                        th.mod Crear Vuelo
+                        th.mod(scope='col') Eliminar
+                tbody
+                - for (var i = 0; i < rutas.length; i++)
+                    tr      
+                        form(method="POST" action="/adminRutas")
+                                td
+                                    input.form-control.mod(name='N_Serial' value=rutas[i].N_Serial readonly)
+                                td
+                                    input.form-control.mod(name='Origen' value=rutas[i].Origen readonly)
+                                td
+                                    input.form-control.mod(name='Destino' value=rutas[i].Destino readonly)    
+                                td.inv
+                                td 
+                                    input.form-control(type='text' placeholder='Ingresar el Número del Vuelo' name='N_Vuelo' required='')
+                                td
+                                    button.btn.btn-outline-create(type="submit", value="add") Registrar Vuelo
+                        td
+                            form(action=`adminRutas/${rutas[i].N_Serial}/${rutas[i].Origen}/${rutas[i].Destino}`,method="POST")
+                                button.btn.btn-outline-danger(type='submit') Eliminar

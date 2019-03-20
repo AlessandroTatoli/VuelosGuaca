@@ -1,0 +1,39 @@
+extends layout
+
+block content
+    .body
+        
+        .container
+            h1.t2 Pasaporte del Usuario: #{Pasaporte}
+            .pRegistro.t1 Por favor escoja un Vuelo
+                table.table.bg-white
+                    thead
+                        tr 
+                            th(scope='col') Vuelo
+                            th(scope='col') Origen
+                            th(scope='col') Destino
+                            th(scope='col') Precio
+                            th.inv
+                            th.mod(scope='col') Reservar
+                            th.mod(scope='col') Comprar
+
+                    tbody
+                    - for (var i = 0; i < vuelos.length; i++)
+                        tr
+                            form(method="POST" action="/reservarA")
+                                td
+                                    input.form-control.mod(name='N_Vuelo' value=vuelos[i].N_Vuelo readonly)
+                                    input.form-control.mod2(name='N_Serial' value=vuelos[i].N_Serial readonly)
+                                    input.form-control.mod2(name='Pasaporte' value=Pasaporte readonly)
+                                td #{vuelos[i].Origen}
+                                td #{vuelos[i].Destino}
+                                td #{vuelos[i].Precio} $
+                                td.inv
+                                td
+                                    button.btn.btn-outline-create(type="submit", value="add") Elegir Asiento
+                            td
+                                form(method="POST" action="/reservarAA")
+                                    input.form-control.mod2(name='N_Vuelo' value=vuelos[i].N_Vuelo readonly)
+                                    input.form-control.mod2(name='Pasaporte' value=Pasaporte readonly)
+                                    input.form-control.mod2(name='Precio' value=vuelos[i].Precio readonly)
+                                    button.btn.btn-outline-create(type="submit", value="add") Comprar

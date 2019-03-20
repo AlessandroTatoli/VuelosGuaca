@@ -1,0 +1,50 @@
+extends layout
+
+block content
+    .body
+        
+        .container
+            nav.navbar
+                a.link(href='/ventas')
+                    button.button Registrar Pasajeros
+                a.link(href='/verventas')
+                    button.button Administrar Pasajeros
+                a.link(href='/verReservas')
+                    button.button Reservas
+                a.link(href='/')
+                    button.button1 Home
+            hr
+            table.table.bg-white
+                thead
+                    tr 
+                        th(scope='col') Pasaporte
+                        th(scope='col') Nombre
+                        th(scope='col') Apellido
+                        th(scope='col') Cedula
+                        th(scope='col') Correo
+                        th(scope='col') Telefono
+                        th.inv
+                        th.mod(scope='col') Eliminar
+                        th.mod(scope='col') Actualizar Telefono
+                        th.mod Reservar/Comprar
+                tbody
+                - for (var i = 0; i < pasajeros.length; i++)
+                    tr
+                   
+                        td #{pasajeros[i].Pasaporte}
+                        td #{pasajeros[i].Nombre}
+                        td #{pasajeros[i].Apellido}
+                        td #{pasajeros[i].Cedula}
+                        td #{pasajeros[i].Correo}
+                        td #{pasajeros[i].Telefono}
+                        td.inv
+                        td
+                            form(action=`verventas/${pasajeros[i].Pasaporte}`,method="POST")
+                                button.btn.btn-outline-danger(type='submit') Eliminar
+                        td
+                            form(action=`verventass/${pasajeros[i].Pasaporte}`,method="POST")
+                                input.form-control.input-sm(aria-describedby='telefono' placeholder='Telefono Nuevo' name='Telefono')
+                                button.btn.btn-outline-danger(type='submit') Actualizar Telefono
+                        td
+                            form(action=`verventasss/${pasajeros[i].Pasaporte}`,method="POST")
+                                button.btn.btn-outline-create(type='submit') Reservar/Comprar

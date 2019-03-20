@@ -1,0 +1,38 @@
+extends layout
+
+block content
+
+    .body
+        .container
+            nav.navbar
+                a.link(href='/planificacionVuelos')
+                    button.button Registrar Ruta
+                a.link(href='/adminRutas')
+                    button.button Administrar Rutas 
+                a.link(href='/verVuelos')
+                    button.button Administrar Vuelos
+                a.link(href='/adminServiciosVuelos')
+                    button.button Servicios Vuelos
+                a.link(href='/adminVuelosCancelados')
+                    button.button Vuelos Cancelados
+                a.link(href='/adminDesvios')
+                    button.button Administrar Desvíos                    
+                a.link(href='/')
+                    button.button1 Home
+
+            h1 Servicios de los Vuelos Disponibles
+            table.table.bg-white
+                thead
+                    tr 
+                        th(scope='col') Número de Vuelo
+                        th(scope='col') Comida
+                        th(scope='col') Internet
+                        th(scope='col') TV
+
+                tbody
+                - for (var i = 0; i < serviciosA.length; i++)
+                    tr
+                        td #{serviciosA[i].N_Vuelo}
+                        td #{serviciosA[i].Comida}
+                        td #{serviciosA[i].Internet}
+                        td #{serviciosA[i].TV}

@@ -1,0 +1,47 @@
+extends layout
+
+block content
+    .body
+        
+        .container
+            nav.navbar
+                a.link(href='/manejoPersonal')
+                    button.button Registrar Tripulación
+                a.link(href='/adminPersonal')
+                    button.button Administrar Tripulación
+                a.link(href='/mantenimiento')
+                    button.button Aviones Mantenimiento                 
+                a.link(href='/tiposMantenimiento')
+                    button.button Tipos Mantenimiento
+                a.link(href='/verMantenimientos')
+                    button.button Administrar Aviones Mantenimiento
+                a.link(href='/')
+                    button.button1 Home
+
+            form(method="POST" action="/manejoPersonal")
+                .container2
+                    h1.t2 Registrar
+                    .pRegistro.t1 Por favor rellene el formulario con los datos correspondientes para ingresar los datos de un tripulante
+                    hr
+
+                    label(for='cedula')
+                        b.t2 Cédula
+                    input.form-control(type='text' placeholder='Ingresar Cédula' name='Cedula' required='')
+                    label(for='nombre')
+                        b.t2 Nombre
+                    input.form-control(type='text' placeholder='Ingresar Nombre' name='Nombre' required='')
+                    label(for='apellido')
+                        b.t2 Apellido
+                    input.form-control(type='text' placeholder='Ingresar Apellido' name='Apellido' required='')
+                    label(for='cargo')
+                        b.t2 Cargo
+                    input.form-control(type='text' placeholder='Ingresar Cargo' name='Cargo' required='')
+                    label(for='telefono')
+                        b.t2 Teléfono
+                    input.form-control(type='text' placeholder='Ingresar Teléfono' name='Telefono' required='')
+                    label(for='correo')
+                        b.t2 Correo
+                    input.form-control(type='text' placeholder='Ingresar Correo' name='Correo' required='')
+                    
+                hr
+                button.registerbtn(type="submit", value="add") Registrar

@@ -1,0 +1,39 @@
+extends layout
+
+block content
+    .body
+        
+        .container
+            nav.navbar
+                a.link(href='/ventas')
+                    button.button Registrar Pasajeros
+                a.link(href='/verventas')
+                    button.button Administrar Pasajeros
+                a.link(href='/verReservas')
+                    button.button Reservas
+                a.link(href='/')
+                    button.button1 Home
+
+            hr
+            table.table.bg-white
+                thead
+                    tr 
+                        th(scope='col') Número de Reserva
+                        th(scope='col') Pasaporte
+                        th(scope='col') Tipo
+                        th(scope='col') Precio
+                        th.inv
+                        th.mod Cancelacion
+
+                tbody
+                - for (var i = 0; i < reservas.length; i++)
+                    tr
+                   
+                        td #{reservas[i].Codigo}
+                        td #{reservas[i].Pasajero_Pasaporte}
+                        td #{reservas[i].Estado}
+                        td #{reservas[i].Precio} $
+                        td.inv
+                        td
+                            form(action=`verReservas/${reservas[i].Codigo}`,method="POST")
+                                button.btn.btn-outline-danger(type='submit') Cancelar

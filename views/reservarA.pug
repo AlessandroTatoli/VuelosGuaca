@@ -1,0 +1,31 @@
+extends layout
+
+block content
+    .body
+        
+        .container
+            h1.t2 Pasaporte del Usuario: #{Pasaporte}
+            h1.t2 Vuelo a Reservar: #{N_Vuelo}
+            .pRegistro.t1 Por favor, seleccione un Asiento
+                table.table.bg-white
+                    thead
+                        tr 
+                            th(scope='col') Tipo de Asiento
+                            th(scope='col') Cantidad Total de Asientos
+                            th.inv
+                            th.mod(scope='col') Reservar
+
+                    tbody
+                    - for (var i = 0; i < asiento.length; i++)
+                        tr
+                        -if(asiento[i].Modelo == aviones[0].Modelo)
+                            form(method="POST" action="/verReservas")
+                                td
+                                    input.form-control.mod(name='Asiento' value=asiento[i].Clase readonly)
+                                    input.form-control.mod2(name='N_Vuelo' value=N_Vuelo readonly)
+                                    input.form-control.mod2(name='Pasaporte' value=Pasaporte readonly)
+                                    input.form-control.mod2(name='Precio' value=Precio readonly)
+                                td #{asiento[i].Asientos}
+                                td.inv
+                                td
+                                    button.btn.btn-outline-create(type="submit", value="add") Elegir Asiento

@@ -1,0 +1,33 @@
+extends layout
+
+block content
+    .body
+        
+        .container
+            nav.navbar
+                a.link(href='/manejoPersonal')
+                    button.button Registrar Tripulación
+                a.link(href='/adminPersonal')
+                    button.button Administrar Tripulación
+                a.link(href='/mantenimiento')
+                    button.button Aviones Mantenimiento                 
+                a.link(href='/tiposMantenimiento')
+                    button.button Tipos Mantenimiento
+                a.link(href='/verMantenimientos')
+                    button.button Administrar Aviones Mantenimiento
+                a.link(href='/')
+                    button.button1 Home
+
+            hr
+            table.table.bg-white
+                thead
+                    tr 
+                        th(scope='col') Tipo de Mantenimiento
+                        th(scope='col') Duración
+                        
+                tbody
+                - for (var i = 0; i < tiposMantenimientos.length; i++)
+                    tr
+                   
+                        td #{tiposMantenimientos[i].TipoMantenimiento}
+                        td #{tiposMantenimientos[i].Duracion}

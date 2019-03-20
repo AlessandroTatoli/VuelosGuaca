@@ -1,0 +1,63 @@
+extends layout
+
+block content
+
+    .body
+        .container
+            nav.navbar
+                a.link(href='/planificacionAviones')
+                    button.button Registrar Avión
+                a.link(href='verAviones')
+                    button.button Administrar Aviones
+                a.link(href='verFabricante')
+                    button.button Fabricante Aviones
+                a.link(href='verServicios')
+                    button.button Servicios Aviones
+                a.link(href='verCaracteristicasAviones')
+                    button.button Caracteristicas Aviones
+                a.link(href='verAsientos')
+                    button.button Asientos Aviones
+                a.link(href='/')
+                    button.button1 Home
+        
+            form(method="POST" action="/planificacionAviones")
+                .container2
+                    h1.t2 Registrar
+                    .pRegistro.t1 Por favor rellene el formulario para registrar un avión
+                    hr
+
+                    label(for='n_serial')
+                        b.t2 Serial
+                    input.form-control(type='text' placeholder='Ingresar el Número de Serial (###)' name='N_Serial' required='')
+                    label(for='modelo' id='modelo')
+                        b.t2 Modelo
+                    br
+                    br
+                    select(name="Modelo")
+                        option(value="" disabled selected) Seleccionar
+                        option(value="737") 737
+                        option(value="747") 747
+                        option(value="757") 757
+                        option(value="767") 767
+                        option(value="777") 777
+                        option(value="320") 320
+                        option(value="330") 330
+                        option(value="340") 340
+                    br
+                    br            
+                    label(for='alquilado')
+                        b.t2 Alquilado
+                    br
+                    br
+                    select(name="Alquilado")
+                        option(value="" disabled selected) Seleccionar
+                        option(value="Si") Si
+                        option(value="No") No                        
+                    br
+                    br
+                    label(for='estado')
+                        b.t2 Estado
+                    input.form-control(type='text' value='Disponible' name='Estado' required='' readonly='')
+
+                hr
+                button.registerbtn(type="submit", value="add") Registrar

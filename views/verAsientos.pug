@@ -1,0 +1,36 @@
+extends layout
+
+block content
+
+    .body
+        .container
+            nav.navbar
+                a.link(href='/planificacionAviones')
+                    button.button Registrar Avión
+                a.link(href='verAviones')
+                    button.button Administrar Aviones
+                a.link(href='verFabricante')
+                    button.button Fabricante Aviones
+                a.link(href='verServicios')
+                    button.button Servicios Aviones
+                a.link(href='verCaracteristicasAviones')
+                    button.button Caracteristicas Aviones
+                a.link(href='verAsientos')
+                    button.button Asientos Aviones
+                a.link(href='/')
+                    button.button1 Home
+
+            hr
+            table.table.bg-white
+                thead
+                    tr 
+                        th(scope='col') Modelo
+                        th(scope='col') Clase
+                        th(scope='col') Número de Asientos
+                        
+                tbody
+                - for (var i = 0; i < asiento.length; i++)
+                    tr
+                        td #{asiento[i].Modelo}
+                        td #{asiento[i].Clase}
+                        td #{asiento[i].Asientos}

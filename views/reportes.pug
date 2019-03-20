@@ -1,0 +1,27 @@
+extends layout
+
+block content
+
+    .body
+        .container
+            nav.navbar                 
+                a.link(href='/')
+                    button.button1 Home
+
+            hr
+            table.table.bg-white
+                thead
+                    h1 Reportes
+                    tr 
+                        th(scope='col') Cantidad de Pasajes Vendidos
+                        
+                tbody
+                    tr
+                        td #{reservas[0].Numero}
+                        hr
+                    tr 
+                        th(scope='col') Cantidad de Aviones Disponibles
+                        
+                tbody
+                    tr
+                        td #{disponibles[0].Numero}

@@ -1,0 +1,142 @@
+body {background: url(https://www.tryimg.com/u/2019/01/27/avioncito.png) no-repeat center fixed;background-size:cover;margin:0;padding:0;}
+p {color: white;font-family: Arial, Helvetica, sans-serif;}
+center {align-content: center;margin:0;padding:0;}
+footer { position: fixed;  left: 0;  bottom: 0;  right:0;  width: 100%;  height: 1vh;  font-size: 1.3vw;  background-color: black;  color: white;  text-align: center;  display: table;  vertical-align: bottom;  padding: 0px;  margin:0;}
+html{margin:0;padding:0;}
+img{justify-content: center;  align-items: center;  display: flex;}
+header{justify-content: center;  align-items: center;  display: flex;}
+.navbar2{color: black;font-family: Arial, Helvetica, sans-serif; }
+a{color: white;font-family: Arial, Helvetica, sans-serif;font-size: 45%;text-decoration: none;}
+.navbar{font-size: 3vw; display:flex; justify-content: center; align-items: center; margin:0; padding:0; width:100%}
+.brand-title{font-size:3.5vh;position: fixed; top:47.5vh;}
+.button1{ background-color:red; border: none; color: white; text-align: center; text-decoration: none; font-size: 1.5vw; padding: 0.65vw; -webkit-transition-duration: 0.4s; transition-duration: 0.4s; display: inline-block; cursor: pointer; border:0.1vw solid rgb(255, 255, 255);}
+.container-fluid{align-content: center; justify-content: center;}
+.brand-title{font-style: italic;font-family:helvetica;font-size:3.5vh;position: fixed; top:47.5vh;}
+.t1{font-style: italic;font-family:helvetica;}
+.t2{font-family:helvetica;}
+button:hover{background-color:black; border: none; color: white; text-align: center; text-decoration: none; font-size: 1.5vw; padding: 0.65vw 0; -webkit-transition-duration: 0.4s; transition-duration: 0.4s; display: inline-block; cursor: pointer; border:0.1vw solid rgb(255, 255, 255);}
+button{ background-color:grey; border: none; color: white; text-align: center; text-decoration: none; font-size: 1.5vw; padding: 0.65vw; -webkit-transition-duration: 0.4s; transition-duration: 0.4s; display: inline-block; cursor: pointer; border:0.1vw solid rgb(255, 255, 255);}
+.container2{align-content: center; justify-content: center; padding: 16px;}
+h1{font-style: italic;font-family:helvetica;text-align: center;}
+
+.btn-outline-danger{
+background-color: red;
+}
+
+.btn-outline-danger:hover{
+  background-color: red;
+  }
+
+.btn-outline-create{
+  background-color: green;
+}
+
+.btn-outline-create:hover{
+  background-color: green;
+  }
+
+
+/* Full-width input fields */
+input{
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+
+input:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+/* Overwrite default styles of hr */
+hr {
+  border: 1px solid #f1f1f1;
+  margin-bottom: 25px;
+}
+
+/* Set a style for the submit button */
+.registerbtn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+  border-radius: 10px;
+  z-index: -100;
+}
+
+.registerbtn:hover{
+  opacity: 1;
+}
+
+/* Add a blue text color to links */
+a {
+  color: dodgerblue;
+}
+
+/* Set a grey background color and center the text of the "sign in" section */
+.signin {
+background-color: #f1f1f1;
+text-align: center;
+}
+
+table,td{
+  border: 1px solid rgb(163, 163, 163);
+}
+
+table{
+  text-align: center;
+
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 95vmax;
+  margin:2vw;
+}
+th{
+  background-color: rgb(0, 174, 255);
+  padding:5px;
+}
+tr:nth-child(even){background-color: #f2f2f2}
+
+th.mod{
+  background-color: yellow;
+  padding:5px;
+}
+
+th.inv{
+  background-color: black;
+  padding:5px;
+}
+
+td.inv{
+  background-color: black;
+  padding:5px;
+}
+
+td{
+  padding:8px;
+}
+
+input.form-control.mod{
+    background: transparent;
+    border: none;
+    text-align: center;
+    font-size: 16;
+    margin-top: 20;
+}
+
+input.form-control.mod2{
+  background: transparent;
+  border: none;
+  opacity: 0;
+  width: 0px;
+  height: 0px;
+  position: absolute;
+  visibility: hidden;
+}

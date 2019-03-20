@@ -1,0 +1,27 @@
+extends layout
+
+block content
+
+    .body
+        .container
+            nav.navbar                 
+                a.link(href='/adminAeropuertos')
+                    button.button Administrar Aeropuertos
+                a.link(href='/verCaracteristicasAeropuertos')
+                    button.button Características Aeropuertos
+                a.link(href='/')
+                    button.button1 Home
+            hr
+            table.table.bg-white
+                thead
+                    tr 
+                        th(scope='col') Código IATA
+                        th(scope='col') Ciudad
+                        th(scope='col') País
+
+                tbody
+                - for (var i = 0; i < aeropuertos.length; i++)
+                    tr
+                        td #{aeropuertos[i].Codigo_IATA}
+                        td #{aeropuertos[i].Ciudad}
+                        td #{aeropuertos[i].Pais}

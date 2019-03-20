@@ -1,0 +1,39 @@
+extends layout
+
+block content
+    .body
+        
+        .container
+            nav.navbar
+                a.link(href='/manejoPersonal')
+                    button.button Registrar Tripulación
+                a.link(href='/adminPersonal')
+                    button.button Administrar Tripulación
+                a.link(href='/mantenimiento')
+                    button.button Aviones Mantenimiento                 
+                a.link(href='/tiposMantenimiento')
+                    button.button Tipos Mantenimiento
+                a.link(href='/verMantenimientos')
+                    button.button Administrar Aviones Mantenimiento
+                a.link(href='/')
+                    button.button1 Home
+
+            hr
+            table.table.bg-white
+                thead
+                    tr 
+                        th(scope='col') Número Serial
+                        th(scope='col') Tipo de Mantenimiento
+                        th.inv
+                        th.mod(scope='col') Estado
+
+                tbody
+                - for (var i = 0; i < mantenimientos.length; i++)
+                    tr
+                   
+                        td #{mantenimientos[i].N_Serial}
+                        td #{mantenimientos[i].TipoMantenimiento}
+                        th.inv
+                        td
+                            form(action=`verMantenimientos/${mantenimientos[i].N_Serial}`,method="POST")
+                                button.btn.btn-outline-danger(type='submit') Finalizar

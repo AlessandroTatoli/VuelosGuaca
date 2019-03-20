@@ -1,0 +1,63 @@
+extends layout
+
+block content
+
+    .body
+        .container
+            nav.navbar
+                a.link(href='/planificacionVuelos')
+                    button.button Registrar Ruta
+                a.link(href='/adminRutas')
+                    button.button Administrar Rutas 
+                a.link(href='/verVuelos')
+                    button.button Administrar Vuelos
+                a.link(href='/adminServiciosVuelos')
+                    button.button Servicios Vuelos
+                a.link(href='/adminVuelosCancelados')
+                    button.button Vuelos Cancelados
+                a.link(href='/adminDesvios')
+                    button.button Administrar Desvíos                    
+                a.link(href='/')
+                    button.button1 Home
+
+            h1 Aviones Disponibles
+            table.table.bg-white
+                thead
+                    tr 
+                        th(scope='col') Número Serial
+                        th(scope='col') Modelo
+                        th.inv
+                        th.mod Origen
+                        th.mod Destino
+                        th.mod Registrar
+
+                tbody
+                - for (var i = 0; i < aviones.length; i++)
+                    form(method="POST" action="/planificacionVuelos")
+                        tr
+                            td
+                                input.form-control.mod(name='N_Serial' value=aviones[i].N_Serial readonly)
+                            td #{aviones[i].Modelo}
+                            td.inv
+                            td 
+                                label(for='origen')
+                                select(name="Origen")
+                                    option(value="" disabled selected) Selecciona un Origen
+                                    option(value="Caracas") Caracas
+                                    option(value="Atlanta") Atlanta
+                                    option(value="Dubai") Dubai 
+                                    option(value="Miami") Miami
+                                    option(value="Nueva York") Nueva York
+                                    option(value="Paris") París 
+                            td
+                                label(for='destino')
+                                select(name="Destino")
+                                    option(value="" disabled selected) Selecciona un Destino
+                                    option(value="Caracas") Caracas
+                                    option(value="Atlanta") Atlanta
+                                    option(value="Dubai") Dubai 
+                                    option(value="Miami") Miami
+                                    option(value="Nueva York") Nueva York
+                                    option(value="Paris") París 
+                            td 
+                                button.btn.btn-outline-create(type="submit", value="add") Registrar Ruta

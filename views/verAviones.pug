@@ -1,0 +1,49 @@
+extends layout
+
+block content
+
+    .body
+        .container
+            nav.navbar
+                a.link(href='/planificacionAviones')
+                    button.button Registrar Avión
+                a.link(href='verAviones')
+                    button.button Administrar Aviones
+                a.link(href='verFabricante')
+                    button.button Fabricante Aviones
+                a.link(href='verServicios')
+                    button.button Servicios Aviones
+                a.link(href='verCaracteristicasAviones')
+                    button.button Caracteristicas Aviones
+                a.link(href='verAsientos')
+                    button.button Asientos Aviones
+                a.link(href='/')
+                    button.button1 Home
+                    
+            hr
+            table.table.bg-white
+                thead
+                    tr 
+                        th(scope='col') Número Serial
+                        th(scope='col') Modelo
+                        th(scope='col') Alquilado
+                        th(scope='col') Estado
+                        th.inv
+                        th.mod(scope='col') Mantenimiento
+                        th.mod(scope='col') Eliminar
+
+                tbody
+                - for (var i = 0; i < aviones.length; i++)
+                    tr
+                   
+                        td #{aviones[i].N_Serial}
+                        td #{aviones[i].Modelo}
+                        td #{aviones[i].Alquilado}
+                        td #{aviones[i].Estado}
+                        td.inv
+                        td
+                            form(action=`verAvioness/${aviones[i].N_Serial}`,method="POST")
+                                button.btn.btn-outline-create(type='submit') Aplicar
+                        td
+                            form(action=`verAviones/${aviones[i].N_Serial}`,method="POST")
+                                button.btn.btn-outline-danger(type='submit') Eliminar
