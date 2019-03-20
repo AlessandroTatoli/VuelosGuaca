@@ -453,9 +453,11 @@ router.post("/desviarVuelo/:N_Vuelo/:N_Serial/:Origen", (req, res) => {
 //REPORTES
 
 router.get('/reportes', (req, res) => {
-  
+
   reservasController.getCantidadReservas((reservas, err) => {
-    avionesController.getDisponibles(data => res.render('reportes', {reservas, disponibles: data}));  
+    avionesController.getMant((mant, err) => {
+      avionesController.getDisponibles(data => res.render('reportes', { reservas, mant, disponibles: data }));
+    });
   });
 });
 

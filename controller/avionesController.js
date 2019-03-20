@@ -123,11 +123,29 @@ controller.getDisponibles = async function(callback) {
 
             "SELECT COUNT(`Aviones`.`Estado`) AS 'Numero'" +
             "FROM `Aviones`" +
-            "WHERE `Aviones`.`Estado` = 'En Mantenimiento'"
+            "WHERE `Aviones`.`Estado` = 'Disponible'"
 
         ).spread((disponibles, metada) => {
             console.log(disponibles, metada);
             callback(disponibles, null)
+        });
+    } catch (error) {
+        callback(error, null);
+    }
+};
+
+controller.getMant = async function(callback) {
+
+    try {
+        
+        db.query(
+
+            "SELECT COUNT(`Aviones`.`Estado`) AS 'Numero'" +
+            "FROM `Aviones`" +
+            "WHERE `Aviones`.`Estado` = 'En Mantenimiento'"
+
+        ).spread((mant, metada) => {
+            callback(mant, null)
         });
     } catch (error) {
         callback(error, null);
