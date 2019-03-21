@@ -1,0 +1,36 @@
+extends layout
+
+block content
+    .body
+        
+        .container
+            h1.t2 Pasaporte del Usuario: #{Pasaporte}
+            .pRegistro.t1 Por favor escoja un Vuelo
+                table.table.bg-white
+                    thead
+                        tr 
+                            th(scope='col') Vuelo
+                            th(scope='col') Origen
+                            th(scope='col') Destino
+                            th(scope='col') Precio
+                            th.inv
+                            th.mod(scope='col') Equipaje
+                            th.mod(scope='col') Comprar
+
+                    tbody
+                    - for (var i = 0; i < vuelos.length; i++)
+                        tr
+                            form(method="POST" action="/reservarAAA")
+                                td
+                                    input.form-control.mod(name='N_Vuelo' value=vuelos[i].N_Vuelo readonly)
+                                    input.form-control.mod2(name='N_Serial' value=vuelos[i].N_Serial readonly)
+                                    input.form-control.mod2(name='Precio' value=vuelos[i].Precio readonly)
+                                    input.form-control.mod2(name='Pasaporte' value=Pasaporte readonly)
+                                td #{vuelos[i].Origen}
+                                td #{vuelos[i].Destino}
+                                td #{vuelos[i].Precio} $
+                                td.inv
+                                td 
+                                    input.form-control(type='text' placeholder='Ingrese el Equipaje' name='Equipaje' required='')
+                                td
+                                    button.btn.btn-outline-create(type="submit", value="add") Comprar

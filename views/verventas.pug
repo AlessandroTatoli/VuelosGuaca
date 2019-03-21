@@ -27,6 +27,7 @@ block content
                         th.mod(scope='col') Eliminar
                         th.mod(scope='col') Actualizar Telefono
                         th.mod Reservar/Comprar
+                        th.mod Sobreventa
                 tbody
                 - for (var i = 0; i < pasajeros.length; i++)
                     tr
@@ -48,3 +49,6 @@ block content
                         td
                             form(action=`verventasss/${pasajeros[i].Pasaporte}`,method="POST")
                                 button.btn.btn-outline-create(type='submit') Reservar/Comprar
+                        td
+                            form(action=`verventassss/${pasajeros[i].Pasaporte}`,method="POST")
+                                button.btn.btn-outline-create(type='submit') Comprar

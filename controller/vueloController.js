@@ -114,10 +114,11 @@ controller.getMasVisitados = async function (callback) {
 
             "SELECT (`Vuelos`.`Destino`) AS 'Numero'" +
             "FROM `Vuelos`" +
-            "GROUP BY 'Numero'" +
-            "ORDER BY `Destino` DESC"
+            "GROUP BY `Destino`" +
+            "ORDER BY COUNT(`Destino`) DESC"
 
         ).spread((masusados, metada) => {
+            console.log("Mas Usados",masusados)
             callback(masusados, null)
         });
     } catch (error) {

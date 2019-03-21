@@ -22,6 +22,7 @@ const Boletos = db.define('Boletos', {
     N_Asiento: {
         type: sequelize.INTEGER,
         allowNull: false,
+        primaryKey: true,
 
         validate: {
             isNumeric: true,

@@ -182,6 +182,12 @@ router.post("/verventasss/:Pasaporte", (req, res) => {
   console.log(req.params.Pasaporte);
 });
 
+router.post("/verventassss/:Pasaporte", (req, res) => {
+
+  vuelosController.getVuelos(data => res.render('sobreventa', { vuelos: data, Pasaporte: req.params.Pasaporte }))
+  console.log(req.params.Pasaporte);
+});
+
 router.post('/reservarA', (req, res) => {
   let { N_Serial } = req.body;
   let { N_Vuelo } = req.body;
@@ -230,6 +236,32 @@ router.post('/verReservas', (req, res) => {
     reservasController.createReserva(Pasaporte, Estado, Precio);
   }
   res.redirect('/verReservas');
+});
+
+router.post('/reservarAAA', (req, res) => {
+  let { N_Serial } = req.body;
+  let { N_Vuelo } = req.body;
+  let { Pasaporte } = req.body;
+  let { Precio } = req.body;
+  var Tipo_Asiento = "Economy";
+  let { Equipaje } = req.body;
+  var Estado = "Sobreventa";
+
+  avionesController.getAviones2(N_Serial, (aviones, err) => {
+    asientosController.getAsientos2(aviones[0].Modelo,(asientos,err) =>{
+      for(var i = 0; i < asientos.length; i++){
+        if(asientos[i].Clase == "Economy"){
+          var numero = asientos[i].Asientos;
+          var N_Asiento = Math.floor((Math.random()*numero)+1);
+          console.log("Venta=",N_Vuelo, Pasaporte, Estado, Precio);
+          console.log("Boleto=",N_Vuelo, Pasaporte, N_Asiento,Equipaje,Tipo_Asiento);
+          boletosController.createBoleto(N_Vuelo, Pasaporte, N_Asiento,Equipaje,Tipo_Asiento);
+          reservasController.createReserva(Pasaporte, Estado, Precio);
+          res.redirect('/verReservas');
+        }
+      }
+    });
+  });
 });
 
 //METODOS CRUD CARACTERISTICAS AEROPUERTOS

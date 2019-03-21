@@ -19,12 +19,12 @@ controller.getAsientos = async function (callback) {
     }
 };
 
-controller.getAsientos2 = async function (N_Serial, callback) {
+controller.getAsientos2 = async function (Modelo, callback) {
     try{
         let response = await Asientos.findAll({
 
             where: {
-                N_Serial
+                Modelo
             }
         });
         let asientos = response.map(result => result.dataValues);
