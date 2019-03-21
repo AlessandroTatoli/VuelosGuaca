@@ -106,4 +106,23 @@ controller.getUsos = async function(callback) {
     }
 };
 
+controller.getMasVisitados = async function (callback) {
+
+    try {
+
+        db.query(
+
+            "SELECT (`Vuelos`.`Destino`) AS 'Numero'" +
+            "FROM `Vuelos`" +
+            "GROUP BY 'Numero'" +
+            "ORDER BY `Destino` DESC"
+
+        ).spread((masusados, metada) => {
+            callback(masusados, null)
+        });
+    } catch (error) {
+        callback(error, null);
+    }
+};
+
 module.exports = controller;

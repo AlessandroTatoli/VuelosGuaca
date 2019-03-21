@@ -2,6 +2,7 @@ const Sequelize = require('sequelize');
 Sequelize.Promise = global.Promise;
 const db = require('../config/db');
 const Asientos = require('../models/asiento');
+const Fabricante = require('../models/fabricante');
 
 const controller = {};
 
@@ -33,5 +34,25 @@ controller.getAsientos2 = async function (N_Serial, callback) {
         callback(null,error);
     }
 };
+
+controller.getCantidadProgramada = async function(callback){
+    try {
+        
+        db.query(
+
+            "SELECT `Asientos`.`Modelo` AS 'Modelo', SUM(`Asientos`.`Asientos`) AS 'NumeroA'"+
+            "FROM `Asientos`"+
+            "INNER JOIN `Fabricante`"+
+            "ON `Asientos`.`Modelo` = `Fabricante`.`Modelo`"+
+            "GROUP BY 'Modelo'"
+
+        ).spread((cantidadProgramada, metada) => {
+            console.log(cantidadProgramada, metada);
+            callback(cantidadProgramada, null)
+        });
+    } catch (error) {
+        callback(error, null);
+    }
+}
 
 module.exports = controller;

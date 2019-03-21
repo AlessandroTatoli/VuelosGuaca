@@ -517,7 +517,15 @@ router.get('/reportes', (req, res) => {
     avionesController.getMant((mant, err) => {
       avionesController.getDisponibles((disponibles, err) => {
         reservasController.getGanancias((ganancias, err) => {
-          vuelosController.getUsos(data => res.render('reportes', { reservas, mant, disponibles, ganancias, avionesUsos: data }));
+          vuelosController.getUsos((avionesUsos, err) => {
+            asientosController.getCantidadProgramada((cantidadProgramada, err) => {
+              boletosController.getCantidadAbordaron((cantidadAbordaron, err) => {
+                vuelosController.getMasVisitados((masusados, err) => {
+                  boletosController.getPromPeso(data => res.render('reportes', { reservas, mant, disponibles, ganancias, avionesUsos, cantidadProgramada, cantidadAbordaron, masusados, prompeso: data }));
+                })
+              }) 
+            })
+          }) 
         }) 
       }) 
     });
