@@ -14,8 +14,7 @@ block content
                             th(scope='col') Destino
                             th(scope='col') Precio
                             th.inv
-                            th.mod(scope='col') Reservar
-                            th.mod(scope='col') Comprar
+                            th.mod(scope='col') Reservar/Comprar
 
                     tbody
                     - for (var i = 0; i < vuelos.length; i++)
@@ -31,10 +30,4 @@ block content
                                 td #{vuelos[i].Precio} $
                                 td.inv
                                 td
-                                    button.btn.btn-outline-create(type="submit", value="add") Elegir Asiento
-                            td
-                                form(method="POST" action="/reservarAA")
-                                    input.form-control.mod2(name='N_Vuelo' value=vuelos[i].N_Vuelo readonly)
-                                    input.form-control.mod2(name='Pasaporte' value=Pasaporte readonly)
-                                    input.form-control.mod2(name='Precio' value=vuelos[i].Precio readonly)
-                                    button.btn.btn-outline-create(type="submit", value="add") Comprar
+                                    button.btn.btn-outline-create(type="submit", value="add") Elegir Asiento/Comprar

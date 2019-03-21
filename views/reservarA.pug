@@ -13,7 +13,11 @@ block content
                             th(scope='col') Tipo de Asiento
                             th(scope='col') Cantidad Total de Asientos
                             th.inv
+                            th.mod(scope='col') Numero de Asiento
+                            th.mod(scope='col') Peso del Equipaje (Reserva)
                             th.mod(scope='col') Reservar
+                            th.mod(scope='col') Peso del Equipaje (Compra)
+                            th.mod(scope='col') Comprar
 
                     tbody
                     - for (var i = 0; i < asiento.length; i++)
@@ -21,11 +25,26 @@ block content
                         -if(asiento[i].Modelo == aviones[0].Modelo)
                             form(method="POST" action="/verReservas")
                                 td
-                                    input.form-control.mod(name='Asiento' value=asiento[i].Clase readonly)
+                                    input.form-control.mod(name='Tipo_Asiento' value=asiento[i].Clase readonly)
                                     input.form-control.mod2(name='N_Vuelo' value=N_Vuelo readonly)
                                     input.form-control.mod2(name='Pasaporte' value=Pasaporte readonly)
                                     input.form-control.mod2(name='Precio' value=Precio readonly)
+                                    input.form-control.mod2(name='numero' value=asiento[i].Asientos readonly)
                                 td #{asiento[i].Asientos}
                                 td.inv
+                                td 
+                                    input.form-control.input-sm(aria-describedby='N_Asiento' placeholder='Numero de Asiento' name='N_Asiento')
+                                td 
+                                    input.form-control.input-sm(aria-describedby='equipaje' placeholder='Peso del Equipaje' name='Equipaje')
                                 td
                                     button.btn.btn-outline-create(type="submit", value="add") Elegir Asiento
+                            form(method="POST" action="/reservarAA") 
+                                td
+                                    input.form-control.input-sm(aria-describedby='equipaje' placeholder='Peso del Equipaje' name='Equipaje')
+                                    input.form-control.mod2(name='Tipo_Asiento' value=asiento[i].Clase readonly)
+                                    input.form-control.mod2(name='N_Vuelo' value=N_Vuelo readonly)
+                                    input.form-control.mod2(name='Pasaporte' value=Pasaporte readonly)
+                                    input.form-control.mod2(name='Precio' value=Precio readonly)
+                                    input.form-control.mod2(name='numero' value=asiento[i].Asientos readonly)
+                                td
+                                    button.btn.btn-outline-create(type="submit", value="add") Comprar

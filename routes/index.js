@@ -194,12 +194,20 @@ router.post('/reservarA', (req, res) => {
 
 });
 
+const boletosController = require('../controller/boletosController');
+
 router.post('/reservarAA', (req, res) => {
   let { N_Vuelo } = req.body;
   let { Pasaporte } = req.body;
   let { Precio } = req.body;
+  let { numero } = req.body;
+  var N_Asiento = Math.floor((Math.random()*numero)+1);
+  let { Equipaje } = req.body;
+  let { Tipo_Asiento } = req.body
   const Estado = "Compra";
-  console.log(N_Vuelo, Pasaporte, Estado, Precio);
+  console.log("Venta=",N_Vuelo, Pasaporte, Estado, Precio);
+  console.log("Boleto=",N_Vuelo, Pasaporte, N_Asiento,Equipaje,Tipo_Asiento);
+  boletosController.createBoleto(N_Vuelo, Pasaporte, N_Asiento,Equipaje,Tipo_Asiento);
   reservasController.createReserva(Pasaporte, Estado, Precio);
   res.redirect('/verReservas');
 });
@@ -207,9 +215,20 @@ router.post('/reservarAA', (req, res) => {
 router.post('/verReservas', (req, res) => {
   let { Pasaporte } = req.body;
   let { Precio } = req.body;
+  let { N_Asiento } = req.body;
+  let { numero } = req.body;
+  if(N_Asiento > numero || N_Asiento < 1){
+    N_Asiento = null;
+  }
+  let { Equipaje } =req.body;
+  let { N_Vuelo } = req.body;
+  let { Tipo_Asiento } = req.body;
   const Estado = "Reserva";
   console.log(Pasaporte, Precio);
-  reservasController.createReserva(Pasaporte, Estado, Precio);
+  if(N_Asiento != null){
+    boletosController.createBoleto(N_Vuelo, Pasaporte, N_Asiento,Equipaje,Tipo_Asiento);
+    reservasController.createReserva(Pasaporte, Estado, Precio);
+  }
   res.redirect('/verReservas');
 });
 

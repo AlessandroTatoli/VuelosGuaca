@@ -1,38 +1,45 @@
 const sequelize = require('sequelize');
 const db = require('../config/db');
-const Fabricante = require('../models/fabricante');
+const Pasajero = require('../models/pasajero');
+const Vuelo = require('../models/vuelo')
 
-const Aviones = db.define('Aviones', {
-    N_Serial: {
+const Boletos = db.define('Boletos', {
+    N_Vuelo: {
+        type: sequelize.INTEGER,
+        references: {
+          model: Vuelo,
+          key: "N_Vuelo"
+        }},
+
+    Pasaporte: {
+        type: sequelize.STRING,
+        references: {
+          model: Pasajero,
+          key: "Pasaporte"
+        }
+    },
+
+    N_Asiento: {
         type: sequelize.INTEGER,
         allowNull: false,
-        primaryKey: true,
-        
+
         validate: {
             isNumeric: true,
             notEmpty: true,
         }
     },
 
-    Modelo: {
+    Equipaje: {
         type: sequelize.INTEGER,
-        references: {
-          model: Fabricante,
-          key: "Modelo"
-        }
-    },
-
-    Alquilado: {
-        type: sequelize.STRING,
         allowNull: false,
 
         validate: {
-            isAlpha: true,
+            isNumeric: true,
             notEmpty: true,
         }
     },
 
-    Estado: {
+    Tipo_Asiento: {
         type: sequelize.STRING,
         allowNull: false,
 
@@ -44,4 +51,4 @@ const Aviones = db.define('Aviones', {
     timestamps: false,
     freezeTableName: true
 });
-module.exports = Aviones;
+module.exports = Boletos;
