@@ -9,12 +9,14 @@ block content
                     button.button Registrar Tripulación
                 a.link(href='/adminPersonal')
                     button.button Administrar Tripulación
+                a.link(href='/verTripulacionAsignada')
+                    button.button Vuelos
                 a.link(href='/mantenimiento')
                     button.button Aviones Mantenimiento                 
                 a.link(href='/tiposMantenimiento')
                     button.button Tipos Mantenimiento
                 a.link(href='/verMantenimientos')
-                    button.button Administrar Aviones Mantenimiento
+                    button.button Aviones Mantenimiento
                 a.link(href='/')
                     button.button1 Home
 
@@ -29,7 +31,6 @@ block content
                         th(scope='col') Teléfono
                         th(scope='col') Correo
                          th.inv
-                        th.mod(scope='col') Asignar Vuelo
                         th.mod(scope='col') Eliminar
                         
                 tbody
@@ -44,7 +45,25 @@ block content
 
                         td.inv
                         td
-
-                        td
                             form(action=`adminPersonal/${tripulacion[i].Cedula}`,method="POST")
                                 button.btn.btn-outline-danger(type='submit') Eliminar
+
+            hr
+            table.table.bg-white
+                thead
+                    tr 
+                        th(scope='col') Número de Vuelo
+                        th(scope='col') Cédula Tripulante
+                        th(scope='col') Asignar Tripulante
+                        
+                tbody
+                - for (var i = 0; i < vuelos.length; i++)
+                    tr
+                        form(method="POST" action="/asignarTripulante")
+                            td #{vuelos[i].N_Vuelo}
+                            td
+                                input.form-control(type='text' placeholder='Ingresar la Cédula del Tripulante' name='Cedula' required='')
+                                input.form-control.mod2(name='N_Vuelo' value=vuelos[i].N_Vuelo readonly)
+                            td
+                                button.btn.btn-outline-create(type="submit", value="add") Asignar Tripulante
+                            

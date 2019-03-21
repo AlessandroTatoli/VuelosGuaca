@@ -38,6 +38,14 @@ const serviciosVuelos = db.define('Servicios_Vuelos', {
             notEmpty: true,
         }
     },
+    N_Serial: {
+        type: sequelize.INTEGER,
+        
+        references: {
+            model: Vuelos,
+            key: 'N_Serial'
+        }
+    },
 }, {
     timestamps: false,
     freezeTableName: true

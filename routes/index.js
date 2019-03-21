@@ -223,7 +223,9 @@ router.get('/verCaracteristicasAeropuertos', (req, res) => {
 const tripulacionController = require('../controller/tripulacionController');
 
 router.get('/adminPersonal', (req, res) => {
-  tripulacionController.getTripulacion(data => res.render('adminPersonal', { tripulacion: data }))
+  tripulacionController.getTripulacion((tripulacion, err) => {
+    vuelosController.getVuelos(data => res.render('adminPersonal', { tripulacion, vuelos: data }))
+  }) 
 });
 
 router.post('/manejoPersonal', (req, res) => {
@@ -421,7 +423,7 @@ router.get('/adminDesvios', (req, res) => {
   vuelosController.getVuelos(data => res.render('adminDesvios', { vuelos: data }))
 });
 
-router.post("/desviarVuelo/:N_Vuelo/:N_Serial/:Origen", (req, res) => {
+router.post("/desviarVuelo/:N_Vuelo/:N_Serial/:Origen/:Destino", (req, res) => {
 
   if (!!req.params.N_Vuelo) {
     vuelosController.updateDestino({ N_Vuelo: req.params.N_Vuelo, Destino: req.body.Destino }, (err) => {
@@ -437,6 +439,16 @@ router.post("/desviarVuelo/:N_Vuelo/:N_Serial/:Origen", (req, res) => {
     vuelosCanceladosController.createVueloCancelado2(vuelosACancelar);
   });
 
+  if (!!req.params.N_Serial) {
+    serviciosAvionController.deleteServicioVueloPorDesvio(req.params.N_Serial, (err) => {
+      if (err)
+        res.json({
+          success: false,
+          msg: 'Failed to delete product'
+        });
+    })
+  }
+
   if (!!req.params.N_Serial && !!req.params.Origen) {
     vuelosController.deleteVueloPorDesvio(req.params.N_Serial, req.params.Origen, (err) => {
       if (err)
@@ -450,18 +462,47 @@ router.post("/desviarVuelo/:N_Vuelo/:N_Serial/:Origen", (req, res) => {
   }
 });
 
+//METODOS CRUD TRIPULACION VUELOS
+
+const tripulacionVuelosController = require('../controller/tripulacionVuelosController');
+
+router.post('/asignarTripulante', (req, res) => {
+  console.log(req.body);
+  tripulacionVuelosController.createTripulacionVuelos(req.body);
+  res.redirect('/adminPersonal');
+});
+
+router.get('/verTripulacionAsignada', (req, res) => {
+  tripulacionVuelosController.getTripulacionVuelos(data => res.render('verTripulacionAsignada', { tripulacionVuelos: data }))
+});
+
+router.post("/verTripulacionAsignada/:Cedula", (req, res) => {
+  if (!!req.params.Cedula) {
+    tripulacionVuelosController.deleteTripulante(req.params.Cedula, (err) => {
+      if (err)
+        res.json({
+          success: false,
+          msg: 'Failed to delete product'
+        });
+      else
+        res.redirect('/verTripulacionAsignada');
+    });
+  }
+});
+
 //REPORTES
 
 router.get('/reportes', (req, res) => {
 
   reservasController.getCantidadReservas((reservas, err) => {
     avionesController.getMant((mant, err) => {
-      avionesController.getDisponibles(data => res.render('reportes', { reservas, mant, disponibles: data }));
+      avionesController.getDisponibles((disponibles, err) => {
+        reservasController.getGanancias((ganancias, err) => {
+          vuelosController.getUsos(data => res.render('reportes', { reservas, mant, disponibles, ganancias, avionesUsos: data }));
+        }) 
+      }) 
     });
   });
 });
-
-
-
 
 module.exports = router;

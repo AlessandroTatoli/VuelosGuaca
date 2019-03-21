@@ -18,7 +18,6 @@ block content
                 tbody
                     tr
                         td #{reservas[0].Numero}
-                        hr
                     tr 
                         th(scope='col') Cantidad de Aviones Disponibles
                         
@@ -31,4 +30,17 @@ block content
                 tbody
                     tr
                         td #{mant[0].Numero}
-                        hr
+                    tr 
+                        th(scope='col') Ganancias de Acuerdo a los Vuelos Actuales
+                        
+                tbody
+                    tr
+                        td #{ganancias[0].Ganancias} $
+                    tr 
+                        th(scope='col') Cantidad de Usos por Cada Avión
+                        
+                tbody
+                    - for(var i=0; i < avionesUsos.length; i++)
+                        tr
+                            td Modelo: #{avionesUsos[i].Avion}  /  Usos: #{avionesUsos[i].Usos}
+

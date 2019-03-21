@@ -41,7 +41,8 @@ block content
                         form(method="POST" action="/verVuelos")
                             td
                                 input.form-control.mod(name='N_Vuelo' value=vuelos[i].N_Vuelo readonly)
-                            td #{vuelos[i].N_Serial}
+                            td
+                                input.form-control.mod(name='N_Serial' value=vuelos[i].N_Serial readonly)
                             td #{vuelos[i].Origen}
                             td #{vuelos[i].Destino}
                             td.inv

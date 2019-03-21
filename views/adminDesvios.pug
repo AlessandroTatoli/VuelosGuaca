@@ -38,7 +38,7 @@ block content
                             td #{vuelos[i].Origen}
                             td #{vuelos[i].Destino}
                             td  
-                                form(action=`desviarVuelo/${vuelos[i].N_Vuelo}/${vuelos[i].N_Serial}/${vuelos[i].Origen}`, method="POST")
+                                form(action=`desviarVuelo/${vuelos[i].N_Vuelo}/${vuelos[i].N_Serial}/${vuelos[i].Origen}/${vuelos[i].Destino}`, method="POST")
                                 
                                     label(for='destino')
                                     select(name="Destino")

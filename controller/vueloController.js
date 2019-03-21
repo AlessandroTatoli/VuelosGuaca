@@ -59,7 +59,7 @@ controller.getVuelosACancelar = async function (N_Serial, Origen, callback) {
             
             where: {
                 N_Serial,
-                Origen: {$notIn: [Origen]},
+                Origen,
             }
         });
         let vuelos = response.map(result => result.dataValues);
@@ -85,6 +85,25 @@ controller.updateDestino = async function (data, callback) {
     } catch (error) {
         callback(error);
     }
-}
+};
+
+controller.getUsos = async function(callback) {
+
+    try {
+        
+        db.query(
+
+            "SELECT `Vuelos`.`N_Serial` AS 'Avion' , COUNT(`Vuelos`.`N_Serial`) AS 'Usos'" +
+            "FROM `Vuelos`" +
+            "GROUP BY `Avion`"
+
+        ).spread((avionesUsos, metada) => {
+            console.log(avionesUsos, metada);
+            callback(avionesUsos, null)
+        });
+    } catch (error) {
+        callback(error, null);
+    }
+};
 
 module.exports = controller;

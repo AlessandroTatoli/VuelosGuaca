@@ -35,4 +35,18 @@ controller.deleteServicioVuelo = async function (N_Vuelo, callback) {
     }
 };
 
+controller.deleteServicioVueloPorDesvio = async function (N_Serial, callback) {
+    try {
+        let response = await serviciosAviones.destroy(
+        {
+            where: {
+                N_Serial,
+            }
+        });
+        callback(null);
+    } catch (error) {
+        callback(error);
+    }
+};
+
 module.exports = controller;

@@ -54,4 +54,22 @@ controller.getCantidadReservas = async function(callback) {
     }
 };
 
+controller.getGanancias = async function(callback) {
+
+    try {
+        
+        db.query(
+
+            "SELECT SUM(Reservas.Precio) AS 'Ganancias'"+
+            "FROM Reservas"
+
+        ).spread((ganancias, metada) => {
+            console.log(ganancias, metada);
+            callback(ganancias, null)
+        });
+    } catch (error) {
+        callback(error, null);
+    }
+};
+
 module.exports = controller;
