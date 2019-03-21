@@ -40,30 +40,48 @@ block content
                         th(scope='col') Cantidad de Usos por Cada Avión
                         
                 tbody
-                    - for(var i=0; i < avionesUsos.length; i++)
+                    - for(var i=0; i < avionesUsos.length; i++)                    
                         tr
                             td Modelo: #{avionesUsos[i].Avion}  /  Usos: #{avionesUsos[i].Usos}
-                    
-                        tr 
-                            th(scope='col') Cantidad Programada para un Vuelo VS Cantidad que Abordaron
+                    tr 
+                        th(scope='col') Cantidad Programada para un Vuelo VS Cantidad que Abordaron
                         
                 tbody
-                    - for(var i=0; i < cantidadProgramada.length; i++)
-                        tr 
-                            td Modelo: #{cantidadProgramada[i].Modelo} / Cantidad Programada: #{cantidadProgramada[i].NumeroA}
+                    tr 
+                        td Workbench 
 
-                    - for(var i=0; i < cantidadAbordaron.length; i++)
-                        tr
-                            td Modelo: #{cantidadAbordaron[i].Modelo} / Número de Vuelo: #{cantidadAbordaron[i].Vuelo} / Cantidad Vendidad: #{cantidadAbordaron[i].NumeroV}
-
-                        tr 
-                            th(scope='col') Destinos más Visitados
+                    tr 
+                        th(scope='col') Destinos más Visitados
                 tbody
                     tr 
-                        td #{masusados[0].Numero}, #{masusados[1].Numero}, #{masusados[2].Numero}
+                        td Workbench
 
                     tr 
                         th(scope='col') Peso Promedio de los Vuelos
                 tbody    
                     tr 
                         td #{prompeso[0].Numero} Kg
+
+                    tr 
+                        th(scope='col') Aeropuertos más Visitados 
+                tbody
+                    tr 
+                        td Workbench
+
+                    tr 
+                        th(scope='col') Demograficas 
+                tbody
+                    tr 
+                        td Workbench
+                    tr 
+                        th(scope='col') Sobreventa 
+                tbody
+                    tr 
+                        td #{sobreventa[0].Numero}
+                    tr 
+                        th(scope='col') Sobreventa Porcentaje 
+                tbody
+                    tr 
+                        td #{sobreventaPorcentual[0].Score}
+
+

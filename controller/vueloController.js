@@ -112,14 +112,51 @@ controller.getMasVisitados = async function (callback) {
 
         db.query(
 
-            "SELECT (`Vuelos`.`Destino`) AS 'Numero'" +
+            "SELECT `Vuelos`.`Destino` AS 'Numero'" +
             "FROM `Vuelos`" +
-            "GROUP BY `Destino`" +
-            "ORDER BY COUNT(`Destino`) DESC"
+            "GROUP BY 'Numero'" +
+            "ORDER BY COUNT(`Vuelos`.`Destino`) DESC"
 
         ).spread((masusados, metada) => {
             console.log("Mas Usados",masusados)
             callback(masusados, null)
+        });
+    } catch (error) {
+        callback(error, null);
+    }
+};
+
+controller.getAeroMasVisitados = async function (callback) {
+
+    try {
+
+        db.query(
+
+            "SELECT `Vuelos`.`Origen` AS 'Numero'" +
+            "FROM `Vuelos`" +
+            "GROUP BY 'Numero'" +
+            "ORDER BY COUNT(`Vuelos`.`Origen`) DESC"
+
+        ).spread((aeromasusados, metada) => {
+            callback(aeromasusados, null)
+        });
+    } catch (error) {
+        callback(error, null);
+    }
+};
+
+controller.getDemograficas = async function (callback) {
+
+    try {
+
+        db.query(
+
+            "SELECT `Vuelos`.`Destino`, COUNT(*) * 100.0 / SUM(COUNT(*)) OVER() AS 'Numero'" +
+            "FROM `Vuelos`" +
+            "GROUP BY 'Numero'" 
+
+        ).spread((demo, metada) => {
+            callback(demo, null)
         });
     } catch (error) {
         callback(error, null);

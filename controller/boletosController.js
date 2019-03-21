@@ -9,6 +9,20 @@ controller.createBoleto = async function(N_Vuelo,Pasaporte,N_Asiento,Equipaje,Ti
     Boletos.create({N_Vuelo, Pasaporte, N_Asiento,Equipaje,Tipo_Asiento});
 }
 
+controller.deleteBoleto = async function (N_Vuelo, callback) {
+    try {
+        let response = await Boletos.destroy(
+         {
+            where: {
+                N_Vuelo
+            }
+        });
+        callback(null);
+    } catch (error) {
+        callback(error);
+    }
+};
+
 controller.getCantidadAbordaron = async function(callback){
     try {
         
@@ -30,6 +44,43 @@ controller.getCantidadAbordaron = async function(callback){
         callback(error, null);
     }
 }
+
+controller.getSobreventa = async function (callback) {
+
+    try {
+
+        db.query(
+
+            "SELECT COUNT(`Reservas`.`Estado`) AS 'Numero'" +
+            "FROM `Reservas`" +
+            "WHERE `Reservas`.`Estado` = 'Sobreventa'"
+
+        ).spread((sobreventa, metada) => {
+            callback(sobreventa, null)
+        });
+    } catch (error) {
+        callback(error, null);
+    }
+};
+
+controller.getSobreventaPorcentual = async function (callback) {
+
+    try {
+
+        db.query(
+
+            "SELECT `Reservas`.`Estado`, (COUNT(`Reservas`.`Estado`)* 100 / (SELECT COUNT(*) FROM `Reservas`)) AS 'Score'"+
+            "From `Reservas`"+
+            "WHERE `Reservas`.`Estado` = 'Sobreventa'"+
+            "GROUP BY 'Score'"
+
+        ).spread((sobreventaPorcentual, metada) => {
+            callback(sobreventaPorcentual, null)
+        });
+    } catch (error) {
+        callback(error, null);
+    }
+};
 
 controller.getPromPeso = async function (callback) {
 

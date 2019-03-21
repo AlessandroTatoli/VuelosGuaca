@@ -141,6 +141,16 @@ router.post("/verVuelos/:N_Vuelo", (req, res) => {
   }
 
   if (!!req.params.N_Vuelo) {
+    boletosController.deleteBoleto(req.params.N_Vuelo, (err) => {
+      if (err)
+        res.json({
+          success: false,
+          msg: 'Failed to delete product'
+        });
+    })
+  }
+
+  if (!!req.params.N_Vuelo) {
     vuelosController.deleteVuelo(req.params.N_Vuelo, (err) => {
       if (err)
         res.json({
@@ -553,7 +563,15 @@ router.get('/reportes', (req, res) => {
             asientosController.getCantidadProgramada((cantidadProgramada, err) => {
               boletosController.getCantidadAbordaron((cantidadAbordaron, err) => {
                 vuelosController.getMasVisitados((masusados, err) => {
-                  boletosController.getPromPeso(data => res.render('reportes', { reservas, mant, disponibles, ganancias, avionesUsos, cantidadProgramada, cantidadAbordaron, masusados, prompeso: data }));
+                  boletosController.getPromPeso((prompeso, err) => {
+                    vuelosController.getAeroMasVisitados((aeromasusados, err) => {
+                      vuelosController.getDemograficas((demo, err) => {
+                        boletosController.getSobreventa((sobreventa, err) => {
+                          boletosController.getSobreventaPorcentual((data => res.render('reportes', { reservas, mant, disponibles, ganancias, avionesUsos, cantidadProgramada, cantidadAbordaron, masusados, prompeso, aeromasusados, demo, sobreventa, sobreventaPorcentual: data }))
+                        )})
+                      })
+                    })
+                  }) 
                 })
               }) 
             })
